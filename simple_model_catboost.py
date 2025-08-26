@@ -340,7 +340,7 @@ if __name__ == '__main__':
         #     params={'iqr_k': 1.5},
         #     verbose=True
         # )
-        # df, _, report_iqr_all = keep_rows_within_iqr(df, k=6, how='all')
+        df, _, report_iqr_all = keep_rows_within_iqr(df, k=6, how='all')
         df["生产结束时间"] = pd.to_datetime(df["生产结束时间"], errors="coerce")
         df = df.sort_values(by="生产结束时间", ascending=True).reset_index(drop=True)
         df = df.drop(columns=['生产结束时间'])
