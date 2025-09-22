@@ -9,6 +9,7 @@ import joblib
 import random
 from sklearn.metrics import mean_squared_error, mean_absolute_error
 import math
+import matplotlib.pyplot as plt
 
 # ----------------- 用户可修改参数 -----------------
 npy_path = "D:\jz_pack_data\pack_json\combined_cells.npy"   # (n_series, T_max)
@@ -181,4 +182,20 @@ def train_and_eval():
     return model, scaler, (y_true_all, y_pred_all)
 
 if __name__ == "__main__":
-    train_and_eval()
+    y_test = np.load("y_test.npy")
+    preds_test = np.load("preds_test.npy")
+
+    y_true = y_test[1000]
+    y_pred = preds_test[1000]
+
+    plt.figure(figsize=(10, 5))
+    plt.plot(y_true, label="True", linewidth=2)
+    plt.plot(y_pred, label="Predicted", linestyle="--", linewidth=2)
+    plt.title("Prediction vs True (First Sample)")
+    plt.xlabel("Time step")
+    plt.ylabel("Value")
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+    # train_and_eval()
